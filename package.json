@@ -1,0 +1,30 @@
+{
+  "name": "leadconduit-standard",
+  "description": "LeadConduit standard integration",
+  "author": "Jonathan Grayson <jonathan@activeprospect.com>",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "CC-BY-NC-ND-4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/activeprospect/leadconduit-integration-standard.git"
+  },
+  "engines": {
+    "node": ">=0.8.1"
+  },
+  "scripts": {
+    "test": "cake test",
+    "prepublish": "cake build"
+  },
+  "dependencies": {
+    "flat": "^1.3.0",
+    "leadconduit-default": "^2.7.1",
+    "lodash": "^2.4.1"
+  },
+  "devDependencies": {
+    "chai": ">= 1.9.0",
+    "coffee-script": ">= 1.7.0",
+    "leadconduit-types": "^4.8.2",
+    "mocha": ">= 1.17.0"
+  }
+}
