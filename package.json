@@ -2,7 +2,7 @@
   "name": "leadconduit-standard",
   "description": "LeadConduit standard integration",
   "author": "Jonathan Grayson <jonathan@activeprospect.com>",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "license": "CC-BY-NC-ND-4.0",
   "repository": {
