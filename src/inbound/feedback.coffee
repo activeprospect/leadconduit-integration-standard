@@ -1,6 +1,5 @@
 _ = require('lodash')
 url = require('url')
-querystring = require('querystring')
 flat = require('flat')
 mimecontent = require('mime-content')
 mimeparse = require('mimeparse')
