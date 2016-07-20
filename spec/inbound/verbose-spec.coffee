@@ -1,5 +1,5 @@
 assert = require('chai').assert
-integration = require('../src/verbose')
+integration = require('../../src/inbound/verbose')
 types = require('leadconduit-types')
 
 describe 'Inbound Verbose Response', ->
@@ -17,6 +17,7 @@ describe 'Inbound Verbose Response', ->
             role_address: 'false'
             outcome: 'success'
 
+
   it 'should set appended fields correctly in JSON response', ->
     req =
       uri: 'http://example.com'
@@ -30,6 +31,7 @@ describe 'Inbound Verbose Response', ->
       body: '{"appended":{"briteverify":{"email":{"status":"valid","disposable":"false","role_address":"false","outcome":"success"}}},"outcome":"success","lead":{"id":"1234"}}'
     assert.deepEqual integration.response(req, @vars), expected
 
+
   it 'should set appended fields correctly in XML response', ->
     req =
       uri: 'http://example.com'
@@ -42,6 +44,7 @@ describe 'Inbound Verbose Response', ->
         'Content-Length': 359
       body: '<?xml version=\"1.0\"?>\n<result>\n  <appended>\n    <briteverify>\n      <email>\n        <status>valid</status>\n        <disposable>false</disposable>\n        <role_address>false</role_address>\n        <outcome>success</outcome>\n      </email>\n    </briteverify>\n  </appended>\n  <outcome>success</outcome>\n  <reason/>\n  <lead>\n    <id>1234</id>\n  </lead>\n</result>'
     assert.deepEqual integration.response(req, @vars), expected
+
 
   it 'should respond correctly when no fields are appended', ->
     req =
@@ -59,6 +62,7 @@ describe 'Inbound Verbose Response', ->
         'Content-Length': 42
       body: '{"outcome":"success","lead":{"id":"1234"}}'
     assert.deepEqual integration.response(req, vars), expected
+
 
   it 'should respond correctly with rich appended fields', ->
     req =

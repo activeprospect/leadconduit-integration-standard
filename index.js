@@ -1,5 +1,3 @@
 module.exports = {
-  inbound: {
-    verbose: require('./lib/verbose')
-  }
+  inbound: require('./lib/inbound')
 };
