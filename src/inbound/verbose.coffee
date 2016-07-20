@@ -30,5 +30,6 @@ response.variables = ->
 #
 
 module.exports =
+  name: 'Standard Verbose'
   request: inbound.request
   response: response
