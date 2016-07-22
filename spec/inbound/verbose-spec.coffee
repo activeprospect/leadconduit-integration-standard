@@ -4,7 +4,7 @@ types = require('leadconduit-types')
 
 describe 'Inbound Verbose Response', ->
 
-  before ->
+  beforeEach ->
     @vars =
       outcome: 'success'
       lead:

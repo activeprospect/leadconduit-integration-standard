@@ -141,10 +141,15 @@ describe 'Inbound feedback', ->
 
   describe 'response', ->
 
-    vars =
-      lead: { id: '123' }
-      outcome: 'failure'
-      reason: 'bad!'
+    vars = null
+
+    beforeEach ->
+      vars =
+        lead:
+          id: '123'
+          email: 'foo@bar.com'
+        outcome: 'failure'
+        reason: 'bad!'
 
     it 'should respond with json', ->
       res = integration.response(baseRequest('application/json'), vars)
@@ -157,6 +162,12 @@ describe 'Inbound feedback', ->
       res = integration.response(baseRequest('*/*'), vars)
       assert.equal res.status, 201
       assert.deepEqual res.headers['Content-Type'],  'application/json'
+
+
+    it 'should return 409 when feedback is disabled', ->
+      vars.reason = 'Feedback is forbidden'
+      res = integration.response(baseRequest('*/*'), vars)
+      assert.equal res.status, 409
 
 
     it 'should respond with text xml', ->
@@ -175,12 +186,13 @@ describe 'Inbound feedback', ->
 
     describe 'With specified fields in response', ->
 
-      vars =
-        lead:
-          id: '123'
-          email: 'foo@bar.com'
-        outcome: 'failure'
-        reason: 'bad!'
+      beforeEach ->
+        vars =
+          lead:
+            id: '123'
+            email: 'foo@bar.com'
+          outcome: 'failure'
+          reason: 'bad!'
 
       it 'should respond with json', ->
         res = integration.response(baseRequest('application/json'), vars, ['outcome', 'lead.id', 'lead.email'])

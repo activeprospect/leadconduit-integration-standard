@@ -139,7 +139,13 @@ response = (req, vars, fieldIds = ['outcome', 'reason', 'lead.id', 'lead.first_n
     'Content-Type': mimeType,
     'Content-Length': Buffer.byteLength(body)
 
-  status: 201
+  status =
+    if rtn.reason?.match(/forbidden/i)
+      409
+    else
+      201
+
+  status: status
   headers: headers
   body: body
 
