@@ -153,7 +153,6 @@ describe.only 'Inbound feedback', ->
 
     it 'should respond with json', ->
       res = integration.response(baseRequest('application/json'), vars)
-      console.log 'res' ,res
       assert.equal res.status, 201
       assert.deepEqual res.headers, 'Content-Type': 'application/json', 'Content-Length': 79
       assert.equal res.body, '{"outcome":"failure","reason":"bad!","lead":{"id":"123","email":"foo@bar.com"}}'
