@@ -1,9 +1,9 @@
 assert = require('chai').assert
-integration = require('../../src/inbound/feedback')
+integration = require('../../lib/inbound/feedback')
 
 
 
-describe 'Inbound feedback', ->
+describe.only 'Inbound feedback', ->
 
   describe 'request', ->
 
@@ -134,7 +134,7 @@ describe 'Inbound feedback', ->
         assert.fail("expected an error to be thrown when JSON content cannot be parsed")
       catch e
         assert.equal e.status, 400
-        assert.equal e.body, 'Body is not parsable as application/json -- Unexpected token w'
+        assert.equal e.body, 'Body is not parsable as application/json -- Unexpected token w in JSON at position 0'
         assert.deepEqual e.headers, 'Content-Type': 'text/plain'
 
 
@@ -153,6 +153,7 @@ describe 'Inbound feedback', ->
 
     it 'should respond with json', ->
       res = integration.response(baseRequest('application/json'), vars)
+      console.log 'res' ,res
       assert.equal res.status, 201
       assert.deepEqual res.headers, 'Content-Type': 'application/json', 'Content-Length': 79
       assert.equal res.body, '{"outcome":"failure","reason":"bad!","lead":{"id":"123","email":"foo@bar.com"}}'
