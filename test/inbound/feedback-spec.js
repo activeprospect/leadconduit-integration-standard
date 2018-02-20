@@ -1,5 +1,5 @@
 const assert = require('chai').assert;
-const integration = require('../../src/inbound/feedback');
+const integration = require('../../lib/inbound/feedback');
 
 
 
