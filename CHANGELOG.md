@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.0] - 2018-07-10
+### Added
+- Add LC to LC integration
+
 ## [1.1.0] - 2018-02-26
 ### Added
 - Add classic inbound
