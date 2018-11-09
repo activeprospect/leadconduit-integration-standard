@@ -159,6 +159,7 @@ describe('Inbound feedback', () => {
             id: '123',
             email: 'foo@bar.com'
           },
+          price: 1.5,
           outcome: 'failure',
           reason: 'bad!'
         };
@@ -167,8 +168,8 @@ describe('Inbound feedback', () => {
       it('should respond with json', () => {
         const res = integration.response(baseRequest('application/json'), vars);
         assert.equal(res.status, 201);
-        assert.deepEqual(res.headers, {'Content-Type': 'application/json', 'Content-Length': 79});
-        assert.equal(res.body, '{"outcome":"failure","reason":"bad!","lead":{"id":"123","email":"foo@bar.com"}}');
+        assert.deepEqual(res.headers, {'Content-Type': 'application/json', 'Content-Length': 91});
+        assert.equal(res.body, '{"outcome":"failure","reason":"bad!","lead":{"id":"123","email":"foo@bar.com"},"price":1.5}');
       });
 
       it('should default to json', () => {
@@ -186,15 +187,15 @@ describe('Inbound feedback', () => {
       it('should respond with text xml', () => {
         const res = integration.response(baseRequest('text/xml'), vars);
         assert.equal(res.status, 201);
-        assert.deepEqual(res.headers, {'Content-Type': 'text/xml', 'Content-Length': 210});
-        assert.equal(res.body, '<?xml version="1.0"?>\n<result>\n  <outcome>failure</outcome>\n  <reason>bad!</reason>\n  <lead>\n    <id>123</id>\n    <first_name/>\n    <last_name/>\n    <email>foo@bar.com</email>\n    <phone_1/>\n  </lead>\n</result>');
+        assert.deepEqual(res.headers, {'Content-Type': 'text/xml', 'Content-Length': 231});
+        assert.equal(res.body, '<?xml version="1.0"?>\n<result>\n  <outcome>failure</outcome>\n  <reason>bad!</reason>\n  <lead>\n    <id>123</id>\n    <first_name/>\n    <last_name/>\n    <email>foo@bar.com</email>\n    <phone_1/>\n  </lead>\n  <price>1.5</price>\n</result>');
       });
 
       it('should respond with application xml', () => {
         const res = integration.response(baseRequest(), vars);
         assert.equal(res.status, 201);
-        assert.deepEqual(res.headers, {'Content-Type': 'application/xml', 'Content-Length': 210});
-        assert.equal(res.body, '<?xml version="1.0"?>\n<result>\n  <outcome>failure</outcome>\n  <reason>bad!</reason>\n  <lead>\n    <id>123</id>\n    <first_name/>\n    <last_name/>\n    <email>foo@bar.com</email>\n    <phone_1/>\n  </lead>\n</result>');
+        assert.deepEqual(res.headers, {'Content-Type': 'application/xml', 'Content-Length': 231});
+        assert.equal(res.body, '<?xml version="1.0"?>\n<result>\n  <outcome>failure</outcome>\n  <reason>bad!</reason>\n  <lead>\n    <id>123</id>\n    <first_name/>\n    <last_name/>\n    <email>foo@bar.com</email>\n    <phone_1/>\n  </lead>\n  <price>1.5</price>\n</result>');
       });
     });
 

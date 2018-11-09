@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.0] - 2018-11-8
+### Added
+- Capture price variable
+
 ## [1.1.0] - 2018-02-26
 ### Added
 - Add classic inbound

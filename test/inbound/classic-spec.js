@@ -3,32 +3,36 @@ const integration = require('../../lib/inbound/classic');
 
 describe('Classic Inbound Response', () => {
 
-  const vars = {
-    lead: { id: '123' },
-    outcome: 'Failure',
-    reason: 'bad!'
-  };
+  beforeEach(() => {
+    this.vars = {
+      lead: { id: '123' },
+      outcome: 'Failure',
+      reason: 'bad!'
+    };
+  });
+
 
   it('should respond with 201', () => {
-    const res = integration.response(baseRequest('application/json'), vars);
+    const res = integration.response(baseRequest('application/json'), this.vars);
     assert.deepEqual(res.status, 201);
   });
 
   it('should respond with xml', () => {
-    const res = integration.response(baseRequest('application/json'), vars);
-    assert.deepEqual(res.headers, {'Content-Type': 'application/xml', 'Content-Length': 253});
+    const res = integration.response(baseRequest('application/json'), this.vars);
+    assert.deepEqual(res.headers, {'Content-Type': 'application/xml', 'Content-Length': 272});
   });
 
   it('should correctly parse failure outcome', () => {
-    const res = integration.response(baseRequest('application/json'), vars);
+    const res = integration.response(baseRequest('application/json'), this.vars);
     assert.deepEqual(res.body, nonSuccessBody);
   });
 
   it('should correctly parse success outcome', () => {
-    vars.outcome = 'Success';
-    delete vars.reason;
+    this.vars.outcome = 'Success';
+    this.vars.price = 1.5;
+    delete this.vars.reason;
 
-    const res = integration.response(baseRequest('application/json'), vars);
+    const res = integration.response(baseRequest('application/json'), this.vars);
     assert.deepEqual(res.body, successBody);
   });
 });
@@ -55,6 +59,7 @@ const successBody = `<!DOCTYPE response SYSTEM "https://app.leadconduit.com/dtd/
   <url>
     <![CDATA[https://app.leadconduit.com/leads?id=123]]>
   </url>
+  <price>1.5</price>
 </response>`;
 
 const nonSuccessBody = `<!DOCTYPE response SYSTEM "https://app.leadconduit.com/dtd/response-v2-basic.dtd">
@@ -65,4 +70,5 @@ const nonSuccessBody = `<!DOCTYPE response SYSTEM "https://app.leadconduit.com/d
   <url>
     <![CDATA[https://app.leadconduit.com/leads?id=123]]>
   </url>
+  <price>0</price>
 </response>`;
