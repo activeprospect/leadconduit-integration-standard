@@ -19,7 +19,7 @@ describe('Classic Inbound Response', () => {
 
   it('should respond with xml', () => {
     const res = integration.response(baseRequest('application/json'), this.vars);
-    assert.deepEqual(res.headers, {'Content-Type': 'application/xml', 'Content-Length': 264});
+    assert.deepEqual(res.headers, {'Content-Type': 'application/xml', 'Content-Length': 272});
   });
 
   it('should correctly parse failure outcome', () => {
@@ -31,15 +31,6 @@ describe('Classic Inbound Response', () => {
     this.vars.outcome = 'Success';
     this.vars.price = 1.5;
     delete this.vars.reason;
-
-    const res = integration.response(baseRequest('application/json'), this.vars);
-    assert.deepEqual(res.body, successBody);
-  });
-
-  it('should capture price variable', () => {
-    this.vars.outcome = 'Success';
-    delete this.vars.reason;
-    this.vars.price = 1.5;
 
     const res = integration.response(baseRequest('application/json'), this.vars);
     assert.deepEqual(res.body, successBody);
@@ -79,5 +70,5 @@ const nonSuccessBody = `<!DOCTYPE response SYSTEM "https://app.leadconduit.com/d
   <url>
     <![CDATA[https://app.leadconduit.com/leads?id=123]]>
   </url>
-  <price/>
+  <price>0</price>
 </response>`;
