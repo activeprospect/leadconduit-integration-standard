@@ -79,9 +79,9 @@ describe('Inbound Verbose Response', () => {
       status: 201,
       headers: {
         'Content-Type': 'application/json',
-        'Content-Length': 42
+        'Content-Length': 52
       },
-      body: '{"outcome":"success","lead":{"id":"1234"}}'
+      body: '{"outcome":"success","lead":{"id":"1234"},"price":0}'
     };
     assert.deepEqual(integration.response(req, vars), expected);
   });
