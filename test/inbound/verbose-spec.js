@@ -54,9 +54,9 @@ describe('Inbound Verbose Response', () => {
       status: 201,
       headers: {
         'Content-Type': 'application/xml',
-        'Content-Length': 380
+        'Content-Length': 368
       },
-      body: '<?xml version="1.0"?>\n<result>\n  <appended>\n    <briteverify>\n      <email>\n        <status>valid</status>\n        <disposable>false</disposable>\n        <role_address>false</role_address>\n        <outcome>success</outcome>\n      </email>\n    </briteverify>\n  </appended>\n  <outcome>success</outcome>\n  <reason/>\n  <lead>\n    <id>1234</id>\n  </lead>\n  <price>1.5</price>\n</result>'
+      body: '<?xml version="1.0"?>\n<result>\n  <appended>\n    <briteverify>\n      <email>\n        <status>valid</status>\n        <disposable>false</disposable>\n        <role_address>false</role_address>\n        <outcome>success</outcome>\n      </email>\n    </briteverify>\n  </appended>\n  <outcome>success</outcome>\n  <lead>\n    <id>1234</id>\n  </lead>\n  <price>1.5</price>\n</result>'
     };
     assert.deepEqual(integration.response(req, this.vars), expected);
   });
@@ -116,9 +116,9 @@ describe('Inbound Verbose Response', () => {
       status: 201,
       headers: {
         'Content-Type': 'application/xml',
-        'Content-Length': 411
+        'Content-Length': 399
       },
-      body: '<?xml version="1.0"?>\n<result>\n  <appended>\n    <briteverify>\n      <email>\n        <status>valid</status>\n        <disposable>false</disposable>\n        <role_address>false</role_address>\n        <outcome>success</outcome>\n        <billable>1</billable>\n      </email>\n    </briteverify>\n  </appended>\n  <outcome>success</outcome>\n  <reason/>\n  <lead>\n    <id>1234</id>\n  </lead>\n  <price>1.5</price>\n</result>'
+      body: '<?xml version="1.0"?>\n<result>\n  <appended>\n    <briteverify>\n      <email>\n        <status>valid</status>\n        <disposable>false</disposable>\n        <role_address>false</role_address>\n        <outcome>success</outcome>\n        <billable>1</billable>\n      </email>\n    </briteverify>\n  </appended>\n  <outcome>success</outcome>\n  <lead>\n    <id>1234</id>\n  </lead>\n  <price>1.5</price>\n</result>'
     };
     assert.deepEqual(integration.response(req, vars), expected);
   });
