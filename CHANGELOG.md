@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.3]
+### Fixed
+- Bump version of `leadconduit-default` to fix verbose response for JSON with numeric ID ([ch23913](https://app.clubhouse.io/active-prospect/story/23913/pipedrive-form-post-delivery))
+- Add test to verify
+
 ## [1.2.1] - 2019-01-10
 ### Fixed
 - Fix failing test that was missed due to dependency differences

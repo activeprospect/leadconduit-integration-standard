@@ -42,6 +42,32 @@ describe('Inbound Verbose Response', () => {
     assert.deepEqual(integration.response(req, this.vars), expected);
   });
 
+  it('should set appended fields correctly for JSON with a numeric ID', () => {
+    const req = {
+      uri: 'http://example.com',
+      headers: {
+        'Accept': 'application/json'
+      }
+    };
+
+    this.vars.appended.otherservice = {
+      user: {
+        12: {
+          foo: "bar"
+        }
+      }
+    };
+
+    const expected = {
+      status: 201,
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': 174
+      },
+      body: '{"appended":{"briteverify":{"email":{"status":"valid","disposable":"false","role_address":"false","outcome":"success"}},"otherservice":{"user":{"\'12\'":{"foo":"bar"}}}},"outcome":"success","lead":{"id":"1234"},"price":1.5}'
+    };
+    assert.equal(integration.response(req, this.vars).body, expected.body);
+  });
 
   it('should set appended fields correctly in XML response', () => {
     const req = {
